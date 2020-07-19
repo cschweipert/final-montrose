@@ -5,8 +5,6 @@ const { promisify } = require('util');
 
 const Mutations = {
     async createItem(parent, args, ctx, info) {
-        // TODO: Check if they are logged in
-
         const item = await ctx.db.mutation.createItem(
             {
                 data: {
@@ -41,7 +39,7 @@ const Mutations = {
         // 1. find the item
         const item = await ctx.db.query.item({ where }, `{ id title}`);
         // 2. Check if they own that item, or have the permissions
-        // TODO
+
         // 3. Delete it!
         return ctx.db.mutation.deleteItem({ where }, info);
     },
@@ -68,7 +66,7 @@ const Mutations = {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
         });
-        // Finalllllly we return the user to the browser
+        // Finaly we return the user to the browser
         return user;
     },
     async signin(parent, { email, password }, ctx, info) {
