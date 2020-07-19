@@ -6,9 +6,19 @@ const { transport, makeANiceEmail } = require('../mail');
 
 const Mutations = {
     async createItem(parent, args, ctx, info) {
+        if (!ctx.request.userId) {
+            throw new Error('You must be logged in to do that!');
+        }
+
         const item = await ctx.db.mutation.createItem(
             {
                 data: {
+                    // This is how to create a relationship between the Item and the User
+                    user: {
+                        connect: {
+                            id: ctx.request.userId,
+                        },
+                    },
                     ...args,
                 },
             },
@@ -40,7 +50,7 @@ const Mutations = {
         // 1. find the item
         const item = await ctx.db.query.item({ where }, `{ id title}`);
         // 2. Check if they own that item, or have the permissions
-
+        // TODO
         // 3. Delete it!
         return ctx.db.mutation.deleteItem({ where }, info);
     },
@@ -67,7 +77,7 @@ const Mutations = {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
         });
-        // Finaly we return the user to the browser
+        // Finalllllly we return the user to the browser
         return user;
     },
     async signin(parent, { email, password }, ctx, info) {
@@ -111,7 +121,7 @@ const Mutations = {
         });
         // 3. Email them that reset token
         const mailRes = await transport.sendMail({
-            from: 'c.schweipert@gmail.com',
+            from: 'wes@wesbos.com',
             to: user.email,
             subject: 'Your Password Reset Token',
             html: makeANiceEmail(`Your Password Reset Token is here!
@@ -126,7 +136,7 @@ const Mutations = {
     async resetPassword(parent, args, ctx, info) {
         // 1. check if the passwords match
         if (args.password !== args.confirmPassword) {
-            throw new Error("Passwords don't match!");
+            throw new Error("Yo Passwords don't match!");
         }
         // 2. check if its a legit reset token
         // 3. Check if its expired
@@ -163,3 +173,4 @@ const Mutations = {
 };
 
 module.exports = Mutations;
+
