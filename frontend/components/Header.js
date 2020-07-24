@@ -17,7 +17,7 @@ Router.onRouteChangeError = () => {
 };
 
 const Logo = styled.h1`
-  background: #8fcfd1;
+  background: #1b1b2f;
   font-family: "Dancing Script";
   font-size: 8rem;
   padding: 10px;
@@ -40,11 +40,12 @@ const Logo = styled.h1`
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 10px solid ${props => props.theme.black};
+    /* border-bottom: 10px solid ${props => props.theme.black}; */
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
     align-items: stretch;
+    background: #1b1b2f;
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       justify-content: center;

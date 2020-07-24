@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles';
+import DateTag from './styles/DateTag';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 import DeleteItem from './DeleteItem';
@@ -28,8 +29,9 @@ export default class Item extends Component {
                         <a>{item.title}</a>
                     </Link>
                 </Title>
-                <PriceTag>{formatMoney(item.price)}</PriceTag>
+                <DateTag>June 25, 2020</DateTag>
                 <p>{item.description}</p>
+                <PriceTag>{formatMoney(item.price)}</PriceTag>
 
                 <div className="buttonList">
                     <Link

@@ -130,6 +130,18 @@ class CreateItem extends Component {
                                     onChange={this.handleChange}
                                 />
                             </label>
+
+                            <label htmlFor="category">
+                                Category
+                <textarea
+                                    id="category"
+                                    name="category"
+                                    placeholder="Enter A Category"
+                                    required
+                                    value={this.state.category}
+                                    onChange={this.handleChange}
+                                />
+                            </label>
                             <button type="submit">Submit</button>
                         </fieldset>
                     </Form>

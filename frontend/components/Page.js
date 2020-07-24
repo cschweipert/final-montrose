@@ -26,8 +26,8 @@ const Inner = styled.div`
 
 injectGlobal`
   @font-face {
-    font-family: 'radnika_next';
-    src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
+    font-family: 'TT Days Sans Light';
+    src: url('/static/TT-Days-Sans-Light.woff2') format('woff2');
     font-weight: lighter;
     font-style: normal;
   }
@@ -43,7 +43,7 @@ injectGlobal`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
-    font-family: 'radnika_next';
+    font-family: 'TT Days Sans Light';
   }
   a {
     text-decoration: none;
